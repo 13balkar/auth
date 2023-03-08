@@ -34,7 +34,6 @@ const validateHandler = async (token) => {
 
   const validatedToken = await validateToken(token);
   if (!validatedToken) {
-    console.log(37);
     throw new httpError('Invalid Token', 401);
   }
   else {
