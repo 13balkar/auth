@@ -23,6 +23,7 @@ const loginUser = async (req, res) => {
     res.status(200).json(user);
   }
   catch (err) {
+    console.log(err);
     if (err instanceof httpError) {
       res.status(err.code).json(err.message);
     }

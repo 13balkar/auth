@@ -1,8 +1,8 @@
 const redis = require('redis');
 const redisClient = redis.createClient({
   socket: {
-    // host: 'docker.for.mac.localhost',
-    host: process.env.REDIS_HOST,
+    host: 'docker.for.mac.localhost',
+    // host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrate": "npx sequelize db:migrate",
+    "migrate": "npx sequelize-cli db:migrate",
     "test": "jest"
   },
   "keywords": [],

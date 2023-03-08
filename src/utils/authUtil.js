@@ -13,7 +13,7 @@ const comparePassword = async (password, hashedPassword) => {
 };
 
 const generateToken = async (username) => {
-  const key = process.env.JWT_SECRET_KEY;
+  const key = process.env.JWT_SECRET_KEY || 'secret';
   const data = {
     username: username,
     time: Date()
@@ -23,7 +23,7 @@ const generateToken = async (username) => {
 
 const validateToken = async (token) => {
 
-  const key = process.env.JWT_SECRET_KEY;
+  const key = process.env.JWT_SECRET_KEY || 'secret';
   const redisClient = redis;
   const redisToken = await redisClient.get(token);
   if (redisToken !== undefined) {
@@ -40,5 +40,5 @@ const storeToken = async (token) => {
   await redisClient.set(token, token, 'EX', 3600);
 
 };
-
-module.exports = { encryptPassword, comparePassword, generateToken, validateToken, storeToken };
+const authUtils = { encryptPassword, comparePassword, generateToken, validateToken, storeToken };
+module.exports = authUtils;
