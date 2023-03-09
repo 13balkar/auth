@@ -14,3 +14,7 @@ app.use('/', authRouter);
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
+
+
+//command to write a new migration in sequelize
+// npx sequelize-cli migration:generate --name rename-username-to-email

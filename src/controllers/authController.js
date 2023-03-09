@@ -1,5 +1,7 @@
 const httpError = require('../../errors/httpErrors');
 const services = require('../services/authService');
+const { JsonWebTokenError } = require('jsonwebtoken');
+
 const createUser = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -7,6 +9,7 @@ const createUser = async (req, res) => {
     res.status(201).json(user);
   }
   catch (err) {
+    console.log(err);
     if (err instanceof httpError) {
       res.status(err.code).json(err.message);
     }
@@ -40,8 +43,11 @@ const validateHandler = async (req, res) => {
     res.status(200).json(user);
   }
   catch (err) {
+    console.log(err);
     if (err instanceof httpError) {
       res.status(err.code).json(err.message);
+    } else if (err instanceof JsonWebTokenError) {
+      res.status(401).json('Invalid Token');
     }
     else {
       res.status(500).json('Internal server error');
